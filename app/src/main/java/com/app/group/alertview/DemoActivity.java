@@ -35,7 +35,7 @@ public class DemoActivity extends Activity {
                 } else if (position == 0) {
                     Toast.makeText(DemoActivity.this, "点击了确认" , Toast.LENGTH_SHORT).show();
                 }
-                getDialog().dismiss();//关闭弹框
+                AppDialog.getInstance().dismiss(); //关闭弹框
             }
 
         }).setErrorId("111").show();
@@ -67,7 +67,7 @@ public class DemoActivity extends Activity {
                     String text = getDialog().getEditTextValue();
                     Toast.makeText(DemoActivity.this, "输入内容为：" + text, Toast.LENGTH_SHORT).show();
                 }
-                getDialog().dismiss();//关闭弹框
+                AppDialog.getInstance().dismiss(); //关闭弹框
             }
         }).showEdit();//显示编辑框弹框
     }
@@ -76,13 +76,13 @@ public class DemoActivity extends Activity {
     public void alertShow6(View view) {
         Drawable[] shareImages = new Drawable[]{getResources().getDrawable(R.mipmap.icon_share_wx), getResources().getDrawable(R.mipmap.icon_share_peng), getResources().getDrawable(R.mipmap.icon_share_wb), getResources().getDrawable(R.mipmap.icon_share_tx)};
         final String[] shareTexts = new String[]{"微信","朋友圈","新浪微博","腾讯微博"};
-        getDialog().setTitle("分享到")
+        AppDialog.getInstance().setContext(this).setTitle("分享到")
                 .setDrawables(shareImages)
                 .setTexts(shareTexts)
                 .setListener(new AppDialog.OnHshDialogListener() {
             @Override
             public void onItemClick(int position) {
-                getDialog().dismiss();
+                AppDialog.getInstance().dismiss();
                 if (position == -1) {
                     return;
                 }
